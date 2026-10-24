@@ -9,15 +9,15 @@
   </style>
 </head>
 <body class="show-js">
-<header class="hero"><div class="wrap"><h1>Cocos Game H5 SDK</h1><p>网页接入、配置、运行与下载 · v0.1.10 · iframe 嵌入，无第三方依赖</p></div></header>
+<header class="hero"><div class="wrap"><h1>Cocos Game H5 SDK</h1><p>网页接入、配置、运行与下载 · v0.1.11 · iframe 嵌入，无第三方依赖</p></div></header>
 <main class="content wrap">
   <section class="card toc"><strong>示例写法：</strong><span class="lang"><button data-lang="js">原生 JS</button><button data-lang="vue">Vue 3</button><button data-lang="react">React</button></span><br><strong>目录：</strong><a href="#download">下载</a><a href="#prepare">接入前准备</a><a href="#quickstart">快速开始</a><a href="#install">引入脚本</a><a href="#open">打开游戏</a><a href="#buttons">按钮配置</a><a href="#fullscreen">全屏</a><a href="#dialog">弹窗</a><a href="#callback">回调</a><a href="#event">通用事件</a><a href="#api">API</a><a href="#security">安全</a><a href="#run">Demo</a><a href="#faq">常见问题</a><a href="#checklist">验收</a></section>
 
   <section class="card" id="download"><h2>下载</h2><div class="grid">
-    <a class="download" href="https://github.com/eathwinster-jk/cocos-game-h5-sdk/releases/download/0.1.10/cocos-game-h5-sdk-0.1.10.zip"><strong>下载 H5 SDK</strong><span>cocos-game-h5-sdk-0.1.10.zip · 接入脚本 + 示例页</span></a>
+    <a class="download" href="https://github.com/eathwinster-jk/cocos-game-h5-sdk/releases/download/0.1.11/cocos-game-h5-sdk-0.1.11.zip"><strong>下载 H5 SDK</strong><span>cocos-game-h5-sdk-0.1.11.zip · 接入脚本 + 示例页</span></a>
     <a class="download" href="https://niuniu-web-test.pages.dev/sdk/demo/"><strong>在线 Demo</strong><span>测试环境 · 支持测试账号登录，可直接体验全部配置</span></a>
     <a class="download" href="https://github.com/eathwinster-jk/cocos-game-h5-sdk"><strong>SDK 源码</strong><span>cocos-game-h5-sdk · cocos_game_web.js 与 demo</span></a>
-  </div><p><span class="tag">iframe + postMessage</span><span class="tag">无依赖</span><span class="tag">原生 JS / Vue / React</span><span class="tag">手机浏览器 / App 内 WebView</span><span class="tag">ES2018+</span></p><p>v0.1.10 新增手机竖屏宿主弹窗：手机竖屏内嵌时，下注、记录与规则、退出确认由 SDK 在宿主页面上展示（与 Android / iOS SDK 竖屏原生弹窗一致），全屏仍用游戏内弹窗。</p><p>v0.1.9 首个 H5 版本：功能与 Android / iOS SDK 0.1.9 对齐，牛牛牌桌在宿主页面容器内嵌展示，支持全屏切换；宿主可隐藏或改写返回、大屏按钮，可配置弹窗范围与遮罩样式；游戏代码运行在独立域名的 iframe 中，宿主页面不加载任何游戏业务代码。</p></section>
+  </div><p><span class="tag">iframe + postMessage</span><span class="tag">无依赖</span><span class="tag">原生 JS / Vue / React</span><span class="tag">手机浏览器 / App 内 WebView</span><span class="tag">ES2018+</span></p><p>v0.1.11 修复手机竖屏宿主弹窗按钮被宿主页面全局 button 样式覆盖（变灰、文字换行）的问题。</p><p>v0.1.10 新增手机竖屏宿主弹窗：手机竖屏内嵌时，下注、记录与规则、退出确认由 SDK 在宿主页面上展示（与 Android / iOS SDK 竖屏原生弹窗一致），全屏仍用游戏内弹窗。</p><p>v0.1.9 首个 H5 版本：功能与 Android / iOS SDK 0.1.9 对齐，牛牛牌桌在宿主页面容器内嵌展示，支持全屏切换；宿主可隐藏或改写返回、大屏按钮，可配置弹窗范围与遮罩样式；游戏代码运行在独立域名的 iframe 中，宿主页面不加载任何游戏业务代码。</p></section>
 
   <section class="card" id="prepare"><h2>接入前准备</h2><ul><li>宿主网页完成用户登录并获得 <code>liveUserId</code>、<code>imUserId</code>、<code>liveToken</code>。</li><li>宿主动态传入 <code>sceneType</code>（1 直播间，2 IM 群）与 <code>sceneId</code>，SDK 不内置固定场景。</li><li><strong>登记宿主域名</strong>：游戏只接受白名单域名的父页面。请提供宿主页面的完整源（协议 + 域名 + 端口），例如 <code>https://test2.kzb001.net</code>（已登记）。</li><li>正式环境宿主页面必须为 HTTPS。</li></ul><table><thead><tr><th>环境</th><th>游戏地址 gameUrl</th><th>已登记宿主域名</th></tr></thead><tbody><tr><td>测试</td><td><code>https://niuniu-web-test.pages.dev/</code></td><td><code>https://test2.kzb001.net</code>、<code>http://localhost:8090</code>、<code>http://localhost:9560</code></td></tr><tr><td>正式</td><td class="wrap-cell">上线前单独提供</td><td class="wrap-cell">按宿主正式域名登记</td></tr></tbody></table><h3>本地联调白名单</h3><ul><li>本地开发页面直接使用已登记的端口启动即可联调测试环境，例如 <code>http://localhost:9560</code>。</li><li>白名单按「协议 + 域名 + 端口」完全匹配：<code>http://127.0.0.1:9560</code>、局域网 IP（如 <code>http://192.168.1.10:9560</code>）、其他端口都视为不同来源，需要单独登记。</li><li>直接双击打开 HTML（<code>file://</code>）无法登记，必须通过本地 HTTP 服务访问。</li><li>需要新增本地端口或测试域名时，把完整源发给游戏方登记，登记生效后刷新页面即可，无需更新 SDK。</li></ul></section>
 
@@ -175,7 +175,7 @@ python3 -m http.server 8090
   <section class="card" id="faq"><h2>常见问题</h2><h3>iframe 一直黑屏，没有任何回调</h3><p>多数是宿主域名未登记：游戏控制台会打印「拒绝非白名单父页面消息」。确认登记的源与地址栏完全一致（协议、域名、端口）。本地联调时注意 <code>localhost</code> 与 <code>127.0.0.1</code> 不是同一来源。</p><h3>提示「登录状态已失效，请重新登录」</h3><p>确认 <code>liveUserId</code> 与 <code>liveToken</code> 匹配、未过期，且与 <code>gameUrl</code> 属于同一环境。</p><h3>大厅没有可用桌</h3><p>确认 Scene Type、Scene ID 与后台开桌场景一致，指定的 <code>tableId</code> 仍有效。</p><h3>手机上没有声音</h3><p>手机浏览器要求用户先与页面交互才能播放声音。建议由用户点击按钮后再调用 <code>open</code>。</p><h3>全屏后页面不能滚动</h3><p>默认全屏会锁定页面滚动，退出全屏或 <code>close()</code> 后自动恢复。如需自行控制，使用「自定义全屏」。</p><h3>单页应用切换路由后游戏还在后台运行</h3><p>组件卸载时调用 <code>close()</code>，参考快速开始中 Vue / React 写法。</p></section>
 
   <section class="card" id="checklist"><h2>上线验收清单</h2><ul><li>宿主正式域名已登记，使用 HTTPS。</li><li>UID、Token、Scene Type、Scene ID 均来自宿主登录态。</li><li>能进入牛牛桌并收到实时阶段。</li><li>入座、离座、下注和结算正常。</li><li>记录与规则、下注弹窗、离座确认关闭后按钮仍可点击。</li><li>内嵌、全屏往返后全部按钮仍可点击，弹窗遮罩覆盖正确。</li><li>手机竖屏内嵌：下注卡片显示在游戏下方且能下注，记录与规则、退出确认在宿主页面弹出；切到全屏后改为游戏内弹窗。</li><li>返回离开、再次进入游戏正常；路由切换后 iframe 已移除。</li><li>切到后台再返回能够恢复桌态。</li><li>Token 失效后能回到宿主登录流程。</li><li>iOS Safari、Android Chrome 及宿主 App 内 WebView 至少各完成一次冒烟测试。</li><li>未在日志或埋点中记录 Token、密码。</li></ul></section>
-  <p class="muted">SDK v0.1.10 · 页面仅包含网页接入信息，不包含业务源码。</p>
+  <p class="muted">SDK v0.1.11 · 页面仅包含网页接入信息，不包含业务源码。</p>
 </main>
 <script>
   // 示例写法切换，选择保存在本地
